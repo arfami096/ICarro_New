@@ -1,0 +1,34 @@
+[94m11:46:49 - [2630] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/login[0m
+[94m11:46:50 - [2630] - INFO - Вводим текст 'arfami096@gmail.com' в поле: ('css selector', "input[name='username']")[0m
+[94m11:46:50 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='username']")[0m
+[94m11:46:50 - [2630] - INFO - Вводим текст '********' в поле: ('css selector', "input[name='password']")[0m
+[94m11:46:50 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='password']")[0m
+[94m11:46:50 - [2630] - INFO - Кликаем по элементу: ('css selector', "button[type='submit']")[0m
+[94m11:46:50 - [2630] - INFO - Кликаем по элементу: ('xpath', "//*[contains(text(), 'OK')]")[0m
+[94m11:46:51 - [2630] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/let-car-work[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст 'Haifa' в поле: ('id', 'city')[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('id', 'city')[0m
+[94m11:46:51 - [2630] - INFO - Кликаем по элементу: ('css selector', "[data-testid='city-option'][data-value='Haifa']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст 'Ford' в поле: ('css selector', "input[name='manufacture']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='manufacture']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст 'X5' в поле: ('css selector', "input[name='model']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='model']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст '2023' в поле: ('css selector', "input[name='year']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='year']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст '2' в поле: ('css selector', "input[name='doors']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='doors']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст '6' в поле: ('css selector', "input[name='seats']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='seats']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст 'Business' в поле: ('css selector', "input[name='carClass']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='carClass']")[0m
+[94m11:46:51 - [2630] - INFO - Вводим текст '446-46-993' в поле: ('css selector', "input[name='serialNumber']")[0m
+[94m11:46:51 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='serialNumber']")[0m
+[94m11:46:52 - [2630] - INFO - Вводим текст '436' в поле: ('css selector', "input[name='pricePerDay']")[0m
+[94m11:46:52 - [2630] - INFO - Ищем элемент: ('css selector', "input[name='pricePerDay']")[0m
+[94m11:46:52 - [2630] - INFO - Вводим текст '' в поле: ('css selector', "textarea[name='about']")[0m
+[94m11:46:52 - [2630] - INFO - Ищем элемент: ('css selector', "textarea[name='about']")[0m
+[94m11:46:52 - [2630] - INFO - Ищем элемент: ('css selector', "select[name='fuel']")[0m
+[94m11:46:52 - [2630] - INFO - Ищем элемент: ('css selector', "select[name='gear']")[0m
+[94m11:46:52 - [2630] - INFO - Ищем элемент: ('css selector', "select[name='wheelsDrive']")[0m
+[94m11:46:52 - [2630] - INFO - Ищем элемент: ('id', 'photo-file')[0m
+[94m11:46:52 - [2630] - INFO - Кликаем по элементу: ('css selector', "button[type='submit']")[0m
