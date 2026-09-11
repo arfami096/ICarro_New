@@ -1,0 +1,4 @@
+
+[INFO] Браузер успешно запущен: Chrome
+[94m18:09:50 - [52322] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/search?page=0&size=10[0m
+[94m18:09:51 - [52322] - INFO - Ищем элемент: ('id', 'dates')[0m
