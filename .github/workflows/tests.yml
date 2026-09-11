@@ -1,6 +1,8 @@
 name: IlCarro UI Tests
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 # РАЗРЕШАЕМ РОБОТУ ПИСАТЬ В РЕПОЗИТОРИЙ (Для создания ветки gh-pages)
