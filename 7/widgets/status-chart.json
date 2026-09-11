@@ -1,0 +1,1 @@
+[{"uid":"fcfe9f8eaccd9b8a","name":"test_ilcarro_login_button[chromium]","time":{"start":1789146122159,"stop":1789146123215,"duration":1056},"status":"passed","severity":"normal"},{"uid":"3b285164370470ed","name":"test_ilcarro_login[chromium]","time":{"start":1789146123271,"stop":1789146127212,"duration":3941},"status":"passed","severity":"normal"}]
