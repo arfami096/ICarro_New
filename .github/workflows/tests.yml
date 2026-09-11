@@ -31,7 +31,7 @@ jobs:
 
       # --- ВОТ СЮДА ВСТАВЛЯЕМ УСТАНОВКУ БРАУЗЕРОВ ---
       - name: Install Playwright Browsers
-        run: playwright install --with-deps
+        run: python -m playwright install --with-deps
 
       - name: Run Pytest
         env:
