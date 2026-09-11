@@ -29,12 +29,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # --- ВОТ СЮДА ВСТАВЛЯЕМ УСТАНОВКУ БРАУЗЕРОВ ---
+      - name: Install Playwright Browsers
+        run: playwright install --with-deps
+
       - name: Run Pytest
         env:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
           HEADLESS_MODE: "true"
-        run: pytest tests_playwright/ --clean-alluredir --alluredir=allure-results
+        # --- И ТУТ ИСПОЛЬЗУЕМ python -m pytest И ПРАВИЛЬНУЮ ПАПКУ ---
+        run: python -m pytest tests_playwright/ --clean-alluredir --alluredir=allure-results
         continue-on-error: true
 
       - name: Generate Allure Report
