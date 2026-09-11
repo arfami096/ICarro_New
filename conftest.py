@@ -15,34 +15,63 @@ load_dotenv()
 def driver():
     is_headless = os.getenv('HEADLESS_MODE', 'false').lower() == 'true'
     is_ci = os.environ.get('CI') == 'true'
+    driver_instance = None
 
     if is_ci:
-        # ПРОФЕССИОНАЛЬНЫЙ CI-ПОДХОД: Google Chrome для Linux-сервера
+        # CI-окружение (GitHub Actions) — строго Chrome Headless
         options = ChromeOptions()
         options.add_argument('--headless=new')
         options.add_argument('--window-size=1920,1080')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--disable-gpu')
-        driver = webdriver.Chrome(options=options)
-
+        driver_instance = webdriver.Chrome(options=options)
     else:
-        # ЛОКАЛЬНАЯ РАЗРАБОТКА
-        options = EdgeOptions()
-        if is_headless:
-            options.add_argument('--headless')
-            options.add_argument('--window-size=1920,1080')
-            options.add_argument('--no-sandbox')
-            options.add_argument('--disable-dev-shm-usage')
-            options.add_argument('--disable-gpu')
+        # Локальная разработка: Каскадный запуск (Chrome -> Edge -> Safari)
 
-        driver = webdriver.Edge(options=options)
-        if not is_headless:
-            driver.maximize_window()
+        # 1. Сначала пробуем Chrome
+        try:
+            options = ChromeOptions()
+            if is_headless:
+                options.add_argument('--headless')
+                options.add_argument('--window-size=1920,1080')
+            driver_instance = webdriver.Chrome(options=options)
+            print("\n[INFO] Браузер успешно запущен: Chrome")
+        except Exception as e_chrome:
+            print(f"\n[WARNING] Chrome не найден или не запущен: {e_chrome}. Пробуем Edge...")
 
-    driver.implicitly_wait(5)
-    yield driver
-    driver.quit()
+            # 2. Если Chrome недоступен, пробуем Edge
+            try:
+                options = EdgeOptions()
+                if is_headless:
+                    options.add_argument('--headless')
+                driver_instance = webdriver.Edge(options=options)
+                print("\n[INFO] Браузер успешно запущен: Edge")
+            except Exception as e_edge:
+                print(f"\n[WARNING] Edge не найден или не запущен: {e_edge}. Пробуем Safari...")
+
+                # 3. Если нет и Edge, запускаем Safari (родной для macOS)
+                try:
+                    driver_instance = webdriver.Safari()
+                    print("\n[INFO] Браузер успешно запущен: Safari")
+                except Exception as e_safari:
+                    raise RuntimeError(
+                        f"Не удалось запустить ни один доступный браузер!\n"
+                        f"Chrome error: {e_chrome}\n"
+                        f"Edge error: {e_edge}\n"
+                        f"Safari error: {e_safari}"
+                    )
+
+        # Максимизируем окно (для Safari это работает иначе, поэтому обходим стороной)
+        if not is_headless and driver_instance and type(driver_instance).__name__ != 'Safari':
+            try:
+                driver_instance.maximize_window()
+            except Exception:
+                pass
+
+    driver_instance.implicitly_wait(5)
+    yield driver_instance
+    driver_instance.quit()
 
 
 # --- АВТОМАТИЧЕСКИЕ СКРИНШОТЫ ПРИ ПАДЕНИИ ---

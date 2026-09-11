@@ -1,0 +1,11 @@
+
+[INFO] Браузер успешно запущен: Chrome
+[94m18:08:37 - [52322] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/search?page=0&size=10[0m
+[94m18:08:39 - [52322] - INFO - Вводим текст 'Qiryat Motzkin' в поле: ('id', 'city')[0m
+[94m18:08:39 - [52322] - INFO - Ищем элемент: ('id', 'city')[0m
+[94m18:08:40 - [52322] - INFO - Кликаем по элементу: ('id', 'dates')[0m
+[94m18:08:40 - [52322] - INFO - Кликаем по элементу: ('xpath', "//button[contains(@class, 'rdrDay') and not(contains(@class, 'rdrDayPassive')) and not(contains(@class, 'rdrDayDisabled')) and .//*[text()='17']]")[0m
+[94m18:08:40 - [52322] - INFO - Кликаем по элементу: ('xpath', "//button[contains(@class, 'rdrDay') and not(contains(@class, 'rdrDayPassive')) and not(contains(@class, 'rdrDayDisabled')) and .//*[text()='21']]")[0m
+[94m18:08:40 - [52322] - INFO - Кликаем по элементу: ('id', 'city')[0m
+[94m18:08:40 - [52322] - INFO - Кликаем по элементу: ('css selector', "button[type='submit']")[0m
+[94m18:08:40 - [52322] - INFO - Ждем обновления URL с параметрами поиска...[0m
