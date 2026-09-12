@@ -39,7 +39,7 @@ jobs:
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
           HEADLESS_MODE: "true"
         # --- И ТУТ ИСПОЛЬЗУЕМ python -m pytest И ПРАВИЛЬНУЮ ПАПКУ ---
-        run: python -m pytest tests_playwright/ --clean-alluredir --alluredir=allure-results
+        run: python -m pytest tests/ tests_playwright/ --clean-alluredir --alluredir=allure-results
         continue-on-error: true
 
       - name: Generate Allure Report
