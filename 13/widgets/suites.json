@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"e387fa4bb326b54ea8c19c2822aba374","name":"tests","statistic":{"failed":0,"broken":0,"skipped":2,"passed":26,"unknown":0,"total":28}},{"uid":"a160e5245398395c111484371776e877","name":"tests_playwright","statistic":{"failed":0,"broken":0,"skipped":0,"passed":25,"unknown":0,"total":25}}]}

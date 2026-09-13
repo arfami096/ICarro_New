@@ -1,2 +1,0 @@
-[94m05:46:50 - [5694] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/search?page=0&size=10[0m
-[94m05:46:51 - [5694] - INFO - Ищем элемент: ('id', 'dates')[0m
