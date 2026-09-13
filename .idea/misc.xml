@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.14 (QA3553_IlCarro_Tests)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.14 (QA3553_IlCarro_Tests)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (QA3553_IlCarro_Tests)" project-jdk-type="Python SDK" />
 </project>
