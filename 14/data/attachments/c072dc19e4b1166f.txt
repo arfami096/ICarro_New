@@ -1,0 +1,12 @@
+[94m11:22:04 - [5486] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/search?page=0&size=10[0m
+[94m11:22:04 - [5486] - INFO - Вводим текст 'Ashkelon' в поле: ('id', 'city')[0m
+[94m11:22:04 - [5486] - INFO - Ищем элемент: ('id', 'city')[0m
+[94m11:22:04 - [5486] - INFO - Кликаем по элементу: ('id', 'dates')[0m
+[94m11:22:04 - [5486] - INFO - Кликаем по элементу: ('xpath', "//button[contains(@class, 'rdrDay') and not(contains(@class, 'rdrDayPassive')) and not(contains(@class, 'rdrDayDisabled')) and .//*[text()='18']]")[0m
+[94m11:22:04 - [5486] - INFO - Кликаем по элементу: ('xpath', "//button[contains(@class, 'rdrDay') and not(contains(@class, 'rdrDayPassive')) and not(contains(@class, 'rdrDayDisabled')) and .//*[text()='23']]")[0m
+[94m11:22:05 - [5486] - INFO - Кликаем по элементу: ('id', 'city')[0m
+[94m11:22:05 - [5486] - INFO - Проверяем блокировку элемента: ('css selector', "button[type='submit']")[0m
+[94m11:22:05 - [5486] - INFO - Ищем элемент: ('css selector', "button[type='submit']")[0m
+[94m11:22:05 - [5486] - INFO - Кликаем по элементу: ('css selector', "button[type='submit']")[0m
+[94m11:22:05 - [5486] - INFO - Ждем обновления URL с параметрами поиска...[0m
+[94m11:22:05 - [5486] - INFO - Найдена машина: ID bmw, string string (string) за $0.0/день[0m
