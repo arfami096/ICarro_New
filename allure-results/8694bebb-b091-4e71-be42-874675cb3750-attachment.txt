@@ -1,4 +1,0 @@
-
-[INFO] Браузер успешно запущен: Chrome
-[94m18:09:05 - [52322] - INFO - Переходим по ссылке: https://icarro-v1.netlify.app/[0m
-[94m18:09:07 - [52322] - INFO - Кликаем по элементу: ('css selector', "[href='/register']")[0m

@@ -15,8 +15,7 @@ class RegistrationPlaywrightPage(BasePlaywrightPage):
         self.password_input = page.locator("input[type='password']")
         self.policy_checkbox = page.locator("#terms-of-use")
 
-        self.error_message = page.locator(".error")
-
+        self.error_message = page.locator(".error, .error-message, mat-error, div[style*='color: red']")
         self.submit_btn = page.locator("button[type='submit']")
         self.ok_btn = page.locator("//*[contains(text(), 'OK')]")
 
@@ -102,12 +101,28 @@ class RegistrationPlaywrightPage(BasePlaywrightPage):
         expect(self.confirmation_text_1_locator).to_be_visible(timeout=5000)
         expect(self.confirmation_text_1_locator).to_have_text(expected_text)
 
+    @allure.step("Проверка сообщения об ошибке: {expected_error}")
     def assert_error_message(self, expected_error: str):
-        expect(self.error_message.first).to_be_visible(timeout=5000)
-        expect(self.error_message.first).to_have_text(expected_error)
+        # Ищем элемент, содержащий текст ожидаемой ошибки
+        error_locator = self.page.locator(f":text('{expected_error}')")
+        expect(error_locator.first).to_be_visible(timeout=5000)
 
     def assert_submit_button_disabled(self, disabled: bool = True):
         if disabled:
             expect(self.submit_btn).to_be_disabled()
         else:
             expect(self.submit_btn).to_be_enabled()
+
+    @allure.step("Проверка атрибута aria-invalid у поля '{field_name}' ({expected_state})")
+    def assert_field_aria_invalid(self, field_name: str, expected_state: str = "true"):
+        field_map = {
+            "name": self.name_input,
+            "last_name": self.last_name_input,
+            "email": self.email_input,
+            "password": self.password_input,
+        }
+        locator = field_map.get(field_name)
+        if not locator:
+            raise ValueError(f"Неизвестное поле: {field_name}")
+
+        expect(locator).to_have_attribute("aria-invalid", expected_state)

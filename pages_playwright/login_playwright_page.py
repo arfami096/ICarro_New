@@ -9,7 +9,21 @@ class LoginPlaywrightPage(BasePlaywrightPage):
         self.email_input = page.locator("[name='username']")
         self.password_input = page.locator("[name='password']")
         self.login_btn = page.locator("button[type='submit']")
-        self.error_message = page.locator(".error")
+        self.error_message = page.locator(".error, .error-message, mat-error, .alert-danger, div[style*='color: red']")
+
+    @allure.step("Убрать фокус с полей ввода")
+    def remove_focus(self):
+        self.page.locator("body").click(position={"x": 0, "y": 0})
+        return self
+
+    @allure.step("Проверка состояния кнопки отправки (disabled={disabled})")
+    def assert_submit_button_disabled(self, disabled: bool = True):
+        if disabled:
+            expect(self.login_btn).to_be_disabled()
+        else:
+            expect(self.login_btn).to_be_enabled()
+        return self
+
 
     @allure.step("Открытие страницы логина")
     def open_login_form(self):
@@ -33,7 +47,22 @@ class LoginPlaywrightPage(BasePlaywrightPage):
         self.login_btn.click()
         return self
 
-    @allure.step("Проверка текста ошибки")
+    @allure.step("Проверка сообщения об ошибке: {expected_error}")
     def assert_error_message(self, expected_error: str):
-        expect(self.error_message).toBeVisible(timeout=5000)
-        expect(self.error_message).toHaveText(expected_error)
+        # Ищем любой видимый элемент, содержащий текст ошибки
+        error_locator = self.page.locator(f":text('{expected_error}')")
+        expect(error_locator.first).to_be_visible(timeout=5000)
+
+    @allure.step("Убрать фокус с полей ввода")
+    def remove_focus(self):
+        # Клик по заголовку или любому пустому месту страницы убирает фокус
+        self.page.locator("body").click(position={"x": 0, "y": 0})
+        return self
+
+    @allure.step("Проверка состояния кнопки отправки (disabled={disabled})")
+    def assert_submit_button_disabled(self, disabled: bool = True):
+        if disabled:
+            expect(self.login_btn).to_be_disabled()
+        else:
+            expect(self.login_btn).to_be_enabled()
+        return self

@@ -1,0 +1,3 @@
+
+[DEBUG API] Status: 200
+[DEBUG API] Body: {"message":"Car added successfully"}

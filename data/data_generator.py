@@ -8,6 +8,7 @@ from api.car_api import IlCarroAPI
 # Инициализируем Faker один раз
 fake = Faker('en_US')
 
+
 class UserGenerator:
 
     @staticmethod
@@ -36,20 +37,19 @@ class UserGenerator:
         data = {
             "name": fake.first_name(),
             "last_name": fake.last_name(),
-            "email": fake.unique.email(),  # Уникальный email "из коробки", uuid больше не нужен
+            "email": fake.unique.email(),  # Уникальный email "из коробки"
             "password": cls.generate_valid_password()
         }
 
-        # Если мы передали какие-то кривые данные для негативного теста - заменяем ими валидные
+        # Если переданы кастомные / невалидные данные — заменяем ими валидные
         data.update(overrides)
 
-        # Распаковываем словарь прямо в модель User
         return User(**data)
 
 
 class SearchDataGenerator:
     # Запасной список на случай, если бэкенд недоступен
-    FALLBACK_CITIES = ["Tel Aviv", "Jerusalem", "Haifa"]
+    FALLBACK_CITIES = ["Tel Aviv", "Jerusalem", "Haifa", "Rehovot", "Netanya"]
 
     @classmethod
     def get_random_city(cls):
@@ -59,7 +59,7 @@ class SearchDataGenerator:
 
             if response.status_code == 200:
                 cities_data = response.json().get("cities", [])
-                # Парсим JSON и вытаскиваем только названия городов, КРОМЕ проблемной Beer Sheva
+                # Парсим JSON и вытаскиваем названия городов (исключая багованные, если требуется)
                 real_cities = [
                     city_obj.get("city") for city_obj in cities_data
                     if city_obj.get("city") and city_obj.get("city") != "Beer Sheva"
@@ -87,16 +87,19 @@ class CarGenerator:
     GEAR_TYPES = ["Automatic", "Manual"]
     WD_TYPES = ["AWD", "FWD", "RWD"]
 
-    # Берем безопасные списки как в учебном проекте, чтобы избежать скрытых багов длины строки
     MAKE_TYPES = ["Toyota", "Honda", "Ford", "BMW", "Mazda"]
     MODEL_TYPES = ["Camry", "Civic", "Focus", "X5", "Premium"]
     CLASS_TYPES = ["Economy", "Comfort", "Business", "Premium"]
 
     @classmethod
     def get_random_car(cls, photo_path=None, **overrides):
+        """
+        Генерирует объект автомобиля со случайными валидными данными.
+        Позволяет переопределять параметры через **overrides.
+        """
         data = {
             "city": SearchDataGenerator.get_random_city(),
-            "make": random.choice(cls.MAKE_TYPES),
+            "manufacture": random.choice(cls.MAKE_TYPES),
             "model": random.choice(cls.MODEL_TYPES),
             "year": str(random.randint(2010, 2024)),
             "fuel": random.choice(cls.FUEL_TYPES),
@@ -107,9 +110,12 @@ class CarGenerator:
             "car_class": random.choice(cls.CLASS_TYPES),
             "reg_number": f"{random.randint(100, 999)}-{random.randint(10, 99)}-{random.randint(100, 999)}",
             "price": str(random.randint(50, 500)),
-            "about": "",  # Оставляем пустым, чтобы обойти возможный баг бэкенда
+            "about": "",
             "photo_path": photo_path
         }
+
+        # Обновляем данные, если переданы кастомные параметры (для негативных кейсов)
         data.update(overrides)
+
         from models.car import Car
         return Car(**data)

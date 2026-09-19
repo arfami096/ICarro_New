@@ -1,0 +1,1 @@
+{"uuid": "3bbf8641-181f-437a-96ce-264797642477", "children": ["739d3833-6713-4669-a1e9-3e7357927be1"], "befores": [{"name": "reg_playwright_page", "status": "passed", "start": 1789811728878, "stop": 1789811728878}], "afters": [{"name": "reg_playwright_page::<lambda>", "start": 1789811730711}], "start": 1789811728878, "stop": 1789811730712}
