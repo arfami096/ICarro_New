@@ -40,8 +40,9 @@ jobs:
           HEADLESS_MODE: "true"
         # --- И ТУТ ИСПОЛЬЗУЕМ python -m pytest И ПРАВИЛЬНУЮ ПАПКУ ---
         run: python -m pytest tests_playwright/ --clean-alluredir --alluredir=allure-results
-               - name: Check allure-results contents
-               run: ls -la allure-results
+
+      - name: Check allure-results contents
+        run: ls -la allure-results
 
 
       - name: Generate Allure Report
