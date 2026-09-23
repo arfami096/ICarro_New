@@ -1,10 +1,13 @@
 import allure
+import pytest
 from playwright.async_api import Page
 
 from data.data_generator import UserGenerator
 from pages_playwright.registration_playwright_page import RegistrationPlaywrightPage
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Registration Page")
 @allure.story("Keyboard / UX")

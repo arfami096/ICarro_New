@@ -4,6 +4,8 @@ from playwright.sync_api import Page
 from tests_playwright.test_api_and_frontend_city_lists import matching_cities
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @pytest.mark.parametrize("city", matching_cities)
 def test_dropdown_with_matching_cities(page: Page, city: str):
     """Тестируем выбор каждого совпадающего города в выпадающем списке"""

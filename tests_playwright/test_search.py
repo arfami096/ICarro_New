@@ -3,6 +3,8 @@ import pytest
 from playwright.sync_api import Page
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Search Module")
 @allure.story("Positive Search")
@@ -21,6 +23,8 @@ def test_search_car_by_city(page: Page, search_playwright_page):
     assert search_playwright_page.get_cars_count() > 0, "Список автомобилей пуст"
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Search Module")
 @allure.story("Negative Search")

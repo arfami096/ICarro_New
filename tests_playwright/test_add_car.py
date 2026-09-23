@@ -12,6 +12,8 @@ VALID_PASSWORD = os.getenv("USER_PASSWORD")
 PHOTO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "assets", "car.jpg"))
 
 
+@pytest.mark.ui
+@pytest.mark.smoke
 @allure.epic("UI Testing Playwright")
 @allure.feature("Add Car Page (Let the car work)")
 @allure.story("Positive Add Car")

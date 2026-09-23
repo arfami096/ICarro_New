@@ -5,6 +5,8 @@ from playwright.sync_api import Page, TimeoutError
 from pages_playwright.registration_playwright_page import RegistrationPlaywrightPage
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Registration Page")
 @allure.story("Accessibility (A11y)")

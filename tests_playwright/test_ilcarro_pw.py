@@ -1,16 +1,21 @@
+import pytest
 from playwright.sync_api import Page, expect
 
+@pytest.mark.ui
+@pytest.mark.smoke
 def test_ilcarro_login_button(page: Page):
     page.goto("https://icarro-v1.netlify.app/")
     page.get_by_role("link", name="Log in").first.click()
     yalla_btn = page.locator("button[type='submit']")
     expect(yalla_btn).to_be_visible()
 
+@pytest.mark.ui
+@pytest.mark.smoke
 def test_ilcarro_login(page: Page):
     page.goto("https://icarro-v1.netlify.app/")
     page.get_by_role("link", name="Log in").first.click()
 
-    # 1. Вводим твои РЕАЛЬНЫЕ данные для входа
+    # 1. Вводим данные для входа
     page.locator("input[type='email']").press_sequentially("arfami096@gmail.com", delay=100)
     page.locator("input[type='password']").press_sequentially("Jamalungma08!", delay=100)
 

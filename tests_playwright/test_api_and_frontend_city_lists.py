@@ -1,3 +1,5 @@
+import pytest
+
 # 1. Список городов с фронта (54 шт.)
 FRONTEND_CITIES = [
     "Tel Aviv", "Jerusalem", "Haifa", "Rishon LeZion", "Petah Tikva", "Ashdod",
@@ -61,6 +63,8 @@ swagger_cities_list = [item["city"] for item in SWAGGER_DATA["cities"]]
 # Находим те города, которые есть и там, и там
 matching_cities = sorted(list(set(swagger_cities_list) & set(FRONTEND_CITIES)))
 
+@pytest.mark.api
+@pytest.mark.regression
 def test_compare_lists():
     """Тест проверки соответствия списков между бэкендом и фронтендом"""
     set_swagger = set(swagger_cities_list)

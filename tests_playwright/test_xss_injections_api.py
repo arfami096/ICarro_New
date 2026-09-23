@@ -6,6 +6,8 @@ from data.data_generator import UserGenerator
 API_URL = "https://ilcarro-backend.herokuapp.com/v1/user/registration/usernamepassword"
 
 
+@pytest.mark.api
+@pytest.mark.regression
 @allure.epic("iCarro Platform")
 @allure.feature("User Registration API")
 @allure.story("Security & Sanitization")

@@ -1,10 +1,13 @@
 import allure
+import pytest
 from playwright.sync_api import Page, expect
 
 from pages_playwright.registration_playwright_page import RegistrationPlaywrightPage
 from tests_playwright.conftest import reg_playwright_page
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Registration Page")
 @allure.story("Keyboard / Tab Order")

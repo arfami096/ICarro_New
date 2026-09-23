@@ -1,9 +1,13 @@
 import allure
+import pytest
 from data.data_generator import CarGenerator, SearchDataGenerator
 from pages_playwright.login_playwright_page import LoginPlaywrightPage
 from pages_playwright.search_playwright_page import SearchPlaywrightPage
 
 
+@pytest.mark.ui
+@pytest.mark.api
+@pytest.mark.regression
 @allure.epic("UI/API Hybrid Testing Playwright")
 @allure.feature("Search functionality")
 @allure.story("API Setup -> UI Search -> API Teardown")

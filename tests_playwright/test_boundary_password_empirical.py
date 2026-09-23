@@ -11,6 +11,8 @@ def generate_password_with_length(length: int) -> str:
     return base + ("a" * (length - len(base)))
 
 
+@pytest.mark.api
+@pytest.mark.regression
 @allure.epic("API Testing")
 @allure.feature("Registration")
 @pytest.mark.parametrize(

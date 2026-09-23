@@ -4,6 +4,8 @@ import allure
 API_URL = "https://ilcarro-backend.herokuapp.com/v1/user/registration/usernamepassword"
 
 
+@pytest.mark.api
+@pytest.mark.regression
 @allure.epic("API Compliance & Bug Tracking")
 @allure.feature("Registration Validation Mismatches")
 @allure.story("UI vs Backend Min Length Mismatch")
@@ -38,6 +40,8 @@ def test_ui_backend_min_length_mismatch(page, length):
         )
 
 
+@pytest.mark.api
+@pytest.mark.regression
 @allure.epic("API Compliance & Bug Tracking")
 @allure.feature("Security & Input Constraints")
 @allure.story("Missing Max Length Validation")

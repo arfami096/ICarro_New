@@ -4,6 +4,8 @@ from playwright.sync_api import Page, expect, TimeoutError
 from pages_playwright.login_playwright_page import LoginPlaywrightPage
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Login Module")
 @allure.story("Navigation")
@@ -17,6 +19,8 @@ def test_navigation_to_login(page: Page, login_playwright_page: LoginPlaywrightP
         expect(login_playwright_page.email_input).to_be_visible()
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Login Module")
 @allure.story("Negative Login - Invalid Credentials")
@@ -55,6 +59,8 @@ def test_login_invalid_credentials(login_playwright_page, email, password, expec
             pytest.xfail(f"Фронтенд не выводит ожидаемый текст ошибки '{expected_error}'")
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Login Module")
 @allure.story("Negative Login - Field Validation & Format")
@@ -87,6 +93,8 @@ def test_login_email_validation(login_playwright_page, invalid_email):
             pytest.xfail("Кнопка сабмита остается активной при невалидном формате email")
 
 
+@pytest.mark.ui
+@pytest.mark.regression
 @allure.epic("UI Testing (Playwright)")
 @allure.feature("Login Module")
 @allure.story("Edge Cases & Sanitization")

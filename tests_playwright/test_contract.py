@@ -3,6 +3,8 @@ import allure
 import pytest
 from data.cities_contract import UI_CITIES, SWAGGER_CITIES
 
+@pytest.mark.api
+@pytest.mark.regression
 @allure.epic("Contract Testing")
 @allure.feature("API & UI Consistency")
 @allure.story("Check cities synchronization between Frontend DOM and Swagger API")
