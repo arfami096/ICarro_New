@@ -66,9 +66,22 @@ def test_login_invalid_credentials(login_playwright_page, email, password, expec
 @allure.story("UI State Consistency")
 @allure.title("Баг: Проверка синхронности авторизации в хедере и футере")
 @allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.xfail(
+    reason="BUG: Состояние авторизации не сквозное. В хедере отображается 'Log out', но в футере по-прежнему доступна кнопка 'Log in'."
+)
 def test_footer_auth_state_consistency(page: Page, login_playwright_page: LoginPlaywrightPage):
-    with allure.step("Фиксация бага: после успешного логина в футере ошибочно отображается кнопка 'Log in'"):
-        pytest.xfail(
-            "BUG: Состояние авторизации не сквозное. В хедере отображается 'Log out', "
-            "но в футере по-прежнему доступна кнопка 'Log in'."
-        )
+    with allure.step("Открыть форму логина и авторизоваться валидными данными"):
+        login_playwright_page.open_login_form()
+        login_playwright_page.fill_email("valid_user@example.com")  # Подставьте ваш валидный тестовый email
+        login_playwright_page.fill_password("ValidPassword123!")  # Подставьте валидный пароль
+        login_playwright_page.submit_login()
+
+    with allure.step("Проскроллить страницу вниз к футеру"):
+        page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+
+    with allure.step("Проверить состояние кнопки 'Log in' в футере"):
+        # Селектор ищет кнопку входа в футере, которая не должна там быть после логина
+        footer_login_btn = page.locator("footer text='Log in', .footer text='Log in'")
+
+        # Если кнопка видна, падаем — это и есть баг, который отловит xfail
+        expect(footer_login_btn).not_to_be_visible()
