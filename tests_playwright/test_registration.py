@@ -354,7 +354,7 @@ def test_registration_whitespace_should_be_trimmed(reg_playwright_page: Registra
 def test_registration_success_redirect_bug(reg_playwright_page):
     user = UserGenerator.get_random_user()
 
-    with allure.step("Otkryt' formu registracii"):
+    with allure.step("Otkryt formu registracii"):
         reg_playwright_page.open_registration_form()
 
     with allure.step(f"Zapolnit' formu validnymi dannymi i otpravit'"):
