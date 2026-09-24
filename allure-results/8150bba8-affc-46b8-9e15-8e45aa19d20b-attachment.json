@@ -1,1 +1,0 @@
-{'timestamp': '2026-09-15T12:13:46', 'status': 400, 'error': 'Bad Request', 'message': 'User already exists', 'path': '/v1/user/registration/usernamepassword'}

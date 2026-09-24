@@ -1,8 +1,0 @@
-
-================== ОТЧЕТ ПО СПИСКАМ =================
-Всего в Swagger: 37
-Всего на фронте: 54
-Совпадающих городов: 22
-Есть только в Swagger (15): ['Beer Sheva', 'Hod HaSharon', 'Modiin', 'Qiryat Ata', 'Qiryat Bialik', 'Qiryat Gat', 'Qiryat Malakhi', 'Qiryat Motzkin', 'Qiryat Ono', 'Qiryat Shemona', 'Qiryat Tivon', 'Qiryat Yam', "Qiryat Ye'arim", 'Qiryat Yovel', 'Raanana']
-Есть только на фронте (32): ['Acre', 'Afula', 'Arad', 'Beersheba', 'Beit Shemesh', 'Carmiel', 'Kiryat Ata', 'Kiryat Bialik', 'Kiryat Gat', 'Kiryat Motzkin', 'Kiryat Ono', 'Kiryat Shmona', 'Kiryat Yam', 'Lod', "Ma'alot-Tarshiha", 'Migdal HaEmek', "Modi'in-Maccabim-Re'ut", 'Nahariya', 'Nes Ziona', 'Ofakim', 'Or Yehuda', "Ra'anana", 'Ramla', 'Rosh HaAyin', 'Safed', 'Sakhnin', 'Tamra', 'Tayibe', 'Tira', 'Umm al-Fahm', 'Yavne', 'Yeruham']
-======================================================

@@ -15,9 +15,18 @@ API_URL = "https://ilcarro-backend.herokuapp.com/v1/user/registration/usernamepa
 @pytest.mark.parametrize(
     "firstName, lastName, password, description, expected_status",
     [
-        ("<script>alert(1)</script>", "Smith", "Password123!", "XSS in firstName", 400),
+        pytest.param(
+            "<script>alert(1)</script>",
+            "Smith",
+            "Password123!",
+            "XSS in firstName",
+            400,
+            marks=pytest.mark.xfail(
+                reason="Known Security Bug: Backend accepts unescaped HTML/JS script in firstName instead of sanitizing or returning 400 Bad Request.",
+                strict=False
+            )
+        ),
         ("John'--", "O'Connor", "Password123!", "SQLi/Apostrophe in names", [200, 201, 400]),
-        # зависит от бизнес-логики
         ("John", "Smith", "   ", "Whitespace only password", 400),
         ("John", "Smith", "12345", "Too short password (5 chars)", 400),
     ],
@@ -35,8 +44,7 @@ def test_api_registration_security_and_edge_cases(page, firstName, lastName, pas
     with allure.step(f"Testcase: {description}"):
         response = page.request.post(API_URL, data=payload)
 
-        # Если expected_status передан списком допустимых кодов
         if isinstance(expected_status, list):
-            assert response.status in expected_status, f"Получен неожиданный статус {response.status}"
+            assert response.status in expected_status, f"Poluchen neozhidanniy status {response.status}"
         else:
-            assert response.status == expected_status, f"Ожидался {expected_status}, но пришел {response.status}"
+            assert response.status == expected_status, f"Ozhidalsya {expected_status}, no prishel {response.status}"

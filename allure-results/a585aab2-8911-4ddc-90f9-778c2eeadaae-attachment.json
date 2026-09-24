@@ -1,1 +1,0 @@
-{'timestamp': 1789812586881, 'status': 400, 'error': 'Bad Request', 'path': '/v1/user/registration/usernamepassword'}

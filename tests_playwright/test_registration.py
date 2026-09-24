@@ -257,7 +257,8 @@ def test_registration_whitespace_empty_fields_backend_validation(reg_playwright_
 @allure.severity(allure.severity_level.NORMAL)
 def test_email_whitespace_trimming(reg_playwright_page: RegistrationPlaywrightPage):
     with allure.step("Otkryt' formu registracii"):
-        reg_playwright_page.open_registration_file() if hasattr(reg_playwright_page, 'open_registration_file') else reg_playwright_page.open_registration_form()
+        reg_playwright_page.open_registration_file() if hasattr(reg_playwright_page,
+                                                                'open_registration_file') else reg_playwright_page.open_registration_form()
 
     with allure.step("Vvesti email s probelami po krayam i ostalnye validnye dannye"):
         unique_prefix = fake.user_name()
@@ -338,3 +339,37 @@ def test_registration_whitespace_should_be_trimmed(reg_playwright_page: Registra
 
     with allure.step("Proverka uspeshnogo otveta"):
         reg_playwright_page.assert_confirmation_text("Registered")
+
+
+@pytest.mark.ui
+@pytest.mark.regression
+@allure.epic("UI Testing (Playwright)")
+@allure.feature("Registration Page")
+@allure.story("Post-Registration Navigation")
+@allure.title("Bug: Ostavanie na pustoy stranice registracii posle uspeshnogo avtomaticheskogo logina")
+@allure.severity(allure.severity_level.NORMAL)
+@pytest.mark.xfail(
+    reason="BUG: Posle uspeshnoy registracii i poyavleniya modalki 'You are logged in success', user ostaetsya na forme registracii vmesto redirekta na glavnuyu ili search-stranicu."
+)
+def test_registration_success_redirect_bug(reg_playwright_page):
+    user = UserGenerator.get_random_user()
+
+    with allure.step("Otkryt' formu registracii"):
+        reg_playwright_page.open_registration_form()
+
+    with allure.step(f"Zapolnit' formu validnymi dannymi i otpravit'"):
+        reg_playwright_page.fill_registration_form(user)
+        reg_playwright_page.set_policy_checkbox(True)
+        reg_playwright_page.submit_registration()
+
+    with allure.step("Proverit' poyavlenie modalki uspeshnogo logina i zakryt' ee"):
+        reg_playwright_page.assert_confirmation_text("Registered")
+        reg_playwright_page.assert_confirmation_text_1("You are logged in success")
+        reg_playwright_page.close_window()
+
+    with allure.step("Proverka avtomaticheskogo redirekta (Ozhidaem perehod so stranicy /register)"):
+        # Tak kak zdes' bug, user ostanetsya na /register, i etot assert (ili proverka URL) upadet, a xfail zafiksiruet defekt
+        current_url = reg_playwright_page.get_current_url()
+        assert "/register" not in current_url, (
+            f"BUG: User ostaetsya na stranice registracii posle logina! Tekushchiy URL: {current_url}"
+        )

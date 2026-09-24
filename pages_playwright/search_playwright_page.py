@@ -134,3 +134,34 @@ class SearchPlaywrightPage(BasePlaywrightPage):
         car_element = self.page.locator(f"a[href*='/cars/{serial_number}']")
         expect(car_element).to_be_visible(timeout=5000)
         return self
+
+    def interact_with_broken_filter_form(self):
+        # Ishchem slomannuyu vkladku/formu filtera i pytaemsya s ney vzaimodeistvovat
+        broken_filter_tab = self.page.locator(".nav-tab-filter, div.nav-tab:has-text('filter')").first
+        # Pytaemsya kliknut, hotya znaem, chto forma polomana i nikakoy reakcii ne budet
+        broken_filter_tab.click(timeout=3000)
+
+        # Mozhno takzhe popytatsya proverit, chto poyavilsya nuzhnyy element,
+        # no tak kak on sloman, Playwright sgeneriruet AssertionError i zafiksiruet bug.
+        expect(self.page.locator(".some-non-existent-filtered-results")).to_be_visible(timeout=3000)
+
+    def select_dates_in_next_month(self, start_day: int, end_day: int):
+        with allure.step(f"Vybor diapazona dat v sleduyushchem mesyace: {start_day} - {end_day}"):
+            # Otkryvaem kalendar'
+            self.page.locator("input[id='dates']").click()
+
+            # Nazhimaem knopku perehoda na sleduyushchiy mesyats
+            next_month_button = self.page.locator("button.rdrNextPrevButton.rdrNextButton").first
+            next_month_button.click()
+
+            # Vybor nachal'nogo dnya
+            start_date_locator = self.page.locator(
+                f"//button[contains(@class, 'rdrDay') and not(contains(@class, 'rdrDayDisabled'))]//*[text()='{start_day}']"
+            ).first
+            start_date_locator.click()
+
+            # Vybor konechnogo dnya
+            end_date_locator = self.page.locator(
+                f"//button[contains(@class, 'rdrDay') and not(contains(@class, 'rdrDayDisabled'))]//*[text()='{end_day}']"
+            ).first
+            end_date_locator.click()
