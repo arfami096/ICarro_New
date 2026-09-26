@@ -26,8 +26,8 @@ def test_navigation_to_login(page: Page, login_playwright_page: LoginPlaywrightP
 @allure.story("Positive Login")
 @allure.title("Успешная авторизация с валидными учетными данными")
 @allure.severity(allure.severity_level.BLOCKER)
-def test_successful_login(login_playwright_page: LoginPlaywrightPage):
-    with allure.step("Открыть форму авторизации"):
+def test_successful_login(page: Page, login_playwright_page: LoginPlaywrightPage):
+    with allure.step("Открыть форму логина"):
         login_playwright_page.open_login_form()
 
     with allure.step("Ввести валидный email и пароль"):
@@ -37,13 +37,12 @@ def test_successful_login(login_playwright_page: LoginPlaywrightPage):
     with allure.step("Кликнуть кнопку отправки формы"):
         login_playwright_page.submit_login()
 
-    with allure.step("Проверить успешность входа (отображение элемента выхода)"):
-        # Проверяем переход или появление индикатора авторизации
+    with allure.step("Проверить успешность входа (появление кнопки Log out)"):
         try:
-            login_playwright_page.assert_logged_in()
+            logout_btn = page.locator("text='Log out', button:has-text('Log out'), a:has-text('Log out')")
+            expect(logout_btn).to_be_visible()
         except (AssertionError, TimeoutError):
             pytest.xfail("Успешная авторизация временно не приводит к ожидаемому изменению UI на стейдже")
-
 
 @pytest.mark.ui
 @pytest.mark.regression
@@ -135,7 +134,8 @@ def test_session_persistence_after_refresh(page: Page, login_playwright_page: Lo
 
     with allure.step("Проверить, что пользователь остался авторизованным после рефреша"):
         try:
-            login_playwright_page.assert_logged_in()
+            logout_btn = page.locator("text='Log out', button:has-text('Log out'), a:has-text('Log out')")
+            expect(logout_btn).to_be_visible()
         except (AssertionError, TimeoutError):
             pytest.xfail("Сессия сбрасывается или состояние авторизации теряется после перезагрузки страницы")
 
