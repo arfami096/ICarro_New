@@ -76,7 +76,7 @@ def test_footer_auth_state_consistency(page: Page, login_playwright_page: LoginP
         login_playwright_page.fill_password("ValidPassword123!")  # Подставьте валидный пароль
         login_playwright_page.submit_login()
 
-    with allure.step("Проскроллить страницу вниз к футеру"):
+    with allure.step("Проскролить страницу вниз к футеру"):
         page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
 
     with allure.step("Проверить состояние кнопки 'Log in' в футере"):
