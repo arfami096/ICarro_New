@@ -1,0 +1,1 @@
+{'timestamp': '2026-09-26T08:30:15', 'status': 400, 'error': 'Bad Request', 'message': {'lastName': 'must not be blank', 'firstName': 'must not be blank'}, 'path': '/v1/user/registration/usernamepassword'}
